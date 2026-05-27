@@ -1,0 +1,340 @@
+/* ==========================================================================
+   1. ОБЩИЕ СТИЛИ И ПЕРЕМЕННЫЕ (Атмосфера полуночи и магии)
+   ========================================================================== */
+:root {
+  --bg-color: #0b0813;         /* Глубокий чернильный фон */
+  --card-bg: #130f24;          /* Уютный темно-фиолетовый цвет карточек */
+  --card-border: #231b3a;      /* Граница блоков */
+  --text-main: #e2daf8;        /* Мягкий светлый текст (не режет глаза) */
+  --text-muted: #9a8eb9;       /* Приглушенный текст для деталей */
+  --accent-purple: #9d4edd;    /* Неоновый фиолетовый (цвет нитей судьбы) */
+  --accent-gold: #ffb703;      /* Теплое золото (свет путеводных звезд) */
+  --shadow-magic: 0 8px 32px rgba(157, 78, 221, 0.15); /* Мягкое фиолетовое свечение */
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+}
+
+/* Контейнер-ограничитель для аккуратного выравнивания */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* Базовый стиль для всех карточек в стиле Pinterest */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+              box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-magic), 0 15px 40px rgba(0, 0, 0, 0.6);
+  border-color: rgba(157, 78, 221, 0.4);
+}
+
+/* ==========================================================================
+   2. ШАПКА САЙТА (Баннер с эффектом погружения)
+   ========================================================================== */
+.head.banner {
+  position: relative;
+  height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Задний размытый фон баннера */
+.banner1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.3) blur(2px); /* Затемнение, чтобы текст читался идеально */
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+/* Контент поверх баннера */
+.banner-content {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+}
+
+.banner-content h1 {
+  font-size: 3.5rem;
+  margin: 0 0 10px 0;
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(157, 78, 221, 0.8), 0 4px 10px rgba(0,0,0,0.5);
+}
+
+.banner-content p {
+  font-size: 1.3rem;
+  color: var(--accent-gold);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 600;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+/* ==========================================================================
+   3. СЕТКА ИНФОРМАЦИИ (Паспорт книги и Цитаты)
+   ========================================================================== */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; /* Левая колонка чуть уже правой */
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+/* Левая карточка: Обложка и характеристики */
+.book-passport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-cover {
+  width: 100%;
+  max-width: 220px;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease;
+}
+
+.book-passport:hover .review-cover {
+  transform: scale(1.03) rotate(1deg); /* Легкое уютное покачивание при наведении */
+}
+
+.specs-list {
+  list-style: none;
+  padding: 0;
+  margin: 25px 0 0 0;
+  width: 100%;
+}
+
+.specs-list li {
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 8px;
+}
+
+.specs-list li:last-child {
+  border-bottom: none;
+}
+
+.specs-list strong {
+  color: var(--text-muted);
+}
+
+.stars {
+  color: var(--accent-gold);
+  text-shadow: 0 0 8px rgba(255, 183, 3, 0.6);
+}
+
+/* Правая карточка: Цитаты */
+.quotes-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.quotes-card h3 {
+  color: var(--accent-purple);
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  border-left: 4px solid var(--accent-purple);
+  padding-left: 15px;
+}
+
+/* Магия оформления цитат */
+q {
+  font-style: italic;
+  font-size: 1.05rem;
+  color: #ffffff;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 25px;
+  display: block;
+}
+
+q::before {
+  content: "«";
+  position: absolute;
+  left: 0;
+  top: -5px;
+  font-size: 2.5rem;
+  color: rgba(157, 78, 221, 0.3);
+  font-family: Georgia, serif;
+}
+
+q:last-of-type {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   4. БЛОК РЕЦЕНЗИИ (Глубокое чтение)
+   ========================================================================== */
+.review-text-block {
+  margin-bottom: 40px;
+}
+
+.review-text-block h2 {
+  color: #ffffff;
+  font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 25px;
+  position: relative;
+}
+
+/* Золотая декоративная точка под заголовком */
+.review-text-block h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-purple), var(--accent-gold));
+  border-radius: 2px;
+}
+
+.review-text-block p {
+  margin-bottom: 20px;
+  color: var(--text-main);
+  text-align: justify;
+}
+
+.review-text-block p strong {
+  color: var(--accent-gold);
+}
+
+.review-text-block em {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   5. ГАЛЕРЕЯ В СТИЛЕ PINTEREST (Эстетика)
+   ========================================================================== */
+.gallery-block h2 {
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #ffffff;
+}
+
+/* Настоящий Pinterest-эффект (Masonry) на чистом CSS */
+.pinterest-gallery {
+  column-count: 4;     /* Количество колонок по умолчанию */
+  column-gap: 15px;    /* Расстояние между колонками */
+  width: 100%;
+}
+
+.gallery-item {
+  background: var(--card-bg);
+  margin-bottom: 15px; /* Отступ между пинами по вертикали */
+  break-inside: avoid; /* Запрещает разрывать карточку между колонками */
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;      /* Убирает лишние зазоры снизу картинки */
+  transition: transform 0.5s ease;
+}
+
+/* Уютный зум картинки внутри пина при наведении */
+.gallery-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-magic);
+  border-color: var(--accent-purple);
+  cursor: pointer;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.04);
+}
+
+/* ==========================================================================
+   6. ССЫЛКА НАЗАД И АДАПТИВНОСТЬ
+   ========================================================================== */
+.light-back-link {
+  display: inline-block;
+  margin-top: 30px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 1px solid transparent;
+}
+
+.light-back-link:hover {
+  color: var(--accent-gold);
+  border-color: rgba(255, 183, 3, 0.3);
+  background: rgba(255, 183, 3, 0.05);
+  transform: translateX(-5px); /* Сдвиг влево, создающий указательный жест */
+}
+
+/* Адаптивность для планшетов */
+@media (max-width: 900px) {
+  .pinterest-gallery {
+    column-count: 3;
+  }
+  .info-grid {
+    grid-template-columns: 1fr; /* Карточки встают друг под друга */
+  }
+  .banner-content h1 {
+    font-size: 2.8rem;
+  }
+}
+
+/* Адаптивность для мобильных телефонов */
+@media (max-width: 600px) {
+  .pinterest-gallery {
+    column-count: 2; /* На телефонах плитка в 2 аккуратные колонки */
+  }
+  .banner-content h1 {
+    font-size: 2.2rem;
+  }
+  .head.banner {
+    height: 350px;
+  }
+  .card {
+    padding: 20px;
+  }
+}

@@ -1,0 +1,299 @@
+
+:root {
+  /* Новая светлая палитра: Хрусталь, Сталь и Королевское Золото */
+  --bg-main: #f4f6f9;          /* Светлый, чистый фон (туманный Оринф) */
+  --bg-card: rgba(255, 255, 255, 0.75); /* Чистое, сияющее хрустальное стекло */
+  --glass-border: rgba(255, 255, 255, 0.6); /* Яркие грани стеклянного замка */
+  
+  /* Акценты величия */
+  --gold-royal: #b8901c;       /* Насыщенное золото для заголовков */
+  --gold-light: #eac55e;       /* Искристое золото для акцентов */
+  --fire-spark: #e65100;       /* Сдержанный, но контрастный огонь */
+  --text-dark: #1e293b;        /* Глубокий чернильный цвет для идеального чтения */
+  --text-muted: #64748b;       /* Мягкий серый для деталей */
+  
+  /* Шрифты и тени */
+  --font-royal: 'Cinzel', serif;
+  --font-text: 'Lora', serif;
+  --shadow-crystal: 0 10px 30px rgba(148, 163, 184, 0.15); /* Воздушная тень */
+  --shadow-hover: 0 15px 35px rgba(184, 144, 28, 0.2);     /* Золотистая аура */
+}
+
+/* Базовые настройки страницы */
+body {
+  background-color: var(--bg-main);
+  /* Мягкие переливы света на фоне */
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(234, 197, 94, 0.15) 0px, transparent 40%),
+    radial-gradient(at 100% 100%, rgba(244, 246, 249, 1) 0px, transparent 50%);
+  color: var(--text-dark);
+  font-family: var(--font-text);
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+/* --- ВЕЛИЧЕСТВЕННЫЙ И СВЕТЛЫЙ ХЕДЕР --- */
+.head.baner {
+  position: relative;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.baner1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  /* Умеренное затемнение, чтобы фон остался видным, но буквы читались */
+  filter: brightness(55%) contrast(105%);
+  transform: scale(1.02);
+  z-index: 1;
+}
+
+.baner.content {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+}
+
+.baner.content h1 {
+  font-family: var(--font-royal);
+  font-size: 4.5rem;
+  margin: 0 0 10px 0;
+  color: #ffffff;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.baner.content p {
+  font-size: 1.3rem;
+  color: var(--gold-light);
+  margin: 0;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-family: var(--font-royal);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* --- ОСНОВНОЙ КОНТЕЙНЕР --- */
+.container {
+  max-width: 1100px;
+  margin: -60px auto 50px auto; /* Красивое наложение хрустальных блоков на баннер */
+  padding: 0 20px;
+  position: relative;
+  z-index: 3;
+}
+
+/* --- СЕТКА ДЛЯ ПАСПОРТА КНИГИ И ЦИТАТ --- */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+/* Эффект Сияющего Хрусталя (Light Glassmorphism) */
+.card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 35px;
+  box-shadow: var(--shadow-crystal);
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* При наведении карточка наполняется мягким золотым светом */
+.card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(184, 144, 28, 0.4);
+  box-shadow: var(--shadow-crystal), var(--shadow-hover);
+}
+
+/* Заголовки: благородный золотой свиток */
+h2, h3 {
+  font-family: var(--font-royal);
+  color: var(--gold-royal);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 0;
+  font-weight: 700;
+}
+
+/* Левая карточка: Обложка */
+.book-passport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.review-cover {
+  width: 100%;
+  max-width: 210px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(148, 163, 184, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.book-passport:hover .review-cover {
+  transform: scale(1.04) rotate(1deg);
+}
+
+.specs-list {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+  margin: 25px 0 0 0;
+}
+
+.specs-list li {
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  padding-bottom: 8px;
+  font-size: 1rem;
+}
+
+.specs-list li strong {
+  color: var(--text-muted);
+  font-family: var(--font-royal);
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+}
+
+.stars {
+  color: var(--gold-royal);
+  text-shadow: 0 0 4px rgba(184, 144, 28, 0.2);
+}
+
+/* Правая карточка: Цитаты */
+.quotes-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+}
+
+q {
+  display: block;
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.6;
+  position: relative;
+  padding-left: 20px;
+  border-left: 3px solid var(--gold-royal); /* Золотая нить судьбы */
+  color: var(--text-dark);
+}
+
+q::before, q::after {
+  content: '';
+}
+
+/* --- БЛОК РЕЦЕНЗИИ --- */
+.review-text-block {
+  margin-bottom: 40px;
+}
+
+.review-text-block h2 {
+  border-bottom: 2px solid rgba(184, 144, 28, 0.15);
+  padding-bottom: 12px;
+  display: inline-block;
+}
+
+.review-text-block p {
+  white-space: pre-line;
+  color: var(--text-dark);
+  font-size: 1.15rem;
+  text-align: justify;
+}
+
+/* --- СЕКЦИЯ ГАЛЕРЕИ (PINTEREST MASONRY) --- */
+.gallery-block h2 {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.pinterest-gallery {
+  column-count: 4;
+  column-gap: 20px;
+  width: 100%;
+}
+
+.gallery-item {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 10px;
+  margin-bottom: 20px;
+  break-inside: avoid;
+  box-shadow: var(--shadow-crystal);
+  transition: all 0.4s ease;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  filter: contrast(102%); /* Оставляем арты яркими и чистыми */
+  transition: transform 0.4s ease;
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-light);
+  box-shadow: 0 15px 30px rgba(184, 144, 28, 0.15);
+}
+
+/* --- ССЫЛКА НАЗАД (КНОПКА) --- */
+.light-back-link {
+  display: inline-block;
+  margin-top: 30px;
+  color: var(--gold-royal);
+  text-decoration: none;
+  font-family: var(--font-royal);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 2px solid var(--gold-royal);
+  padding: 12px 30px;
+  border-radius: 30px;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+
+.light-back-link:hover {
+  background: var(--gold-royal);
+  color: #ffffff;
+  box-shadow: var(--shadow-hover);
+  transform: translateX(-4px);
+}
+
+/* --- АДАПТИВНОСТЬ --- */
+@media (max-width: 900px) {
+  .info-grid { grid-template-columns: 1fr; }
+  .pinterest-gallery { column-count: 2; }
+  .baner.content h1 { font-size: 3rem; }
+}
+
+@media (max-width: 600px) {
+  .pinterest-gallery { column-count: 1; }
+  .baner.content h1 { font-size: 2.2rem; }
+  .container { margin-top: -30px; padding: 0 10px; }
+  .card { padding: 25px; }
+}
+

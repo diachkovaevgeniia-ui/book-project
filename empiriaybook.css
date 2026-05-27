@@ -1,0 +1,360 @@
+/* ==========================================================================
+   1. ОБЩИЕ НАСТРОЙКИ И ЦВЕТОВАЯ ПАЛИТРА (ЭМПИРИЕЙ)
+   ========================================================================== */
+
+
+:root {
+  /* Новый, более светлый и контрастный фон: благородный темно-серый с синеватым отливом */
+  --bg-dark: #161920;        
+  /* Карточки теперь светлее и контрастнее, с выраженным эффектом матового стекла */
+  --bg-card: rgba(30, 35, 45, 0.75); 
+  --accent-gold: #f3c64f;    /* Яркое, светящееся золото Клейма */
+  --accent-crimson: #a62632; /* Насыщенный багряный для цитат */
+  --text-light: #ffffff;     /* Чистый белый для идеальной читаемости */
+  --text-muted: #c5c5d5;     /* Более светлый серый для описаний */
+  --font-title: 'Cinzel', 'Georgia', serif; 
+  --font-body: 'Inter', 'Arial', sans-serif;
+  --transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  font-family: var(--font-body);
+  line-height: 1.7;
+  /* Мягкие, теплые золотистые и багровые отсветы магии на фоне */
+  background-image: 
+    radial-gradient(circle at 15% 25%, rgba(166, 38, 50, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 85% 75%, rgba(243, 198, 79, 0.1) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* Общий контейнер-ограничитель */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ==========================================================================
+   2. ШАПКА / БАННЕР СТРАНИЦЫ (.head.baner)
+   ========================================================================== */
+.head.baner {
+  position: relative;
+  width: 100%;
+  height: 45vh; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-bottom: 2px solid rgba(243, 198, 79, 0.3);
+  background-color: #0b0c10; /* Фиксированный темный подложечный фон для баннера */
+  z-index: 1; /* Удерживает баннер и его содержимое над фоном body */
+}
+
+/* Блок фонового изображения внутри баннера */
+.baner1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.5) contrast(1.1); /* Сделали чуть ярче (0.5 вместо 0.35) */
+  z-index: -1; /* Картинка уходит строго под текст внутри баннера */
+}
+
+/* Текстовый контент в баннере */
+.baner\.content {
+  position: relative;
+  text-align: center;
+  padding: 20px;
+}
+
+.baner\.content h1 {
+  font-family: var(--font-title);
+  font-size: 3.8rem;
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  text-shadow: 0 0 25px rgba(243, 198, 79, 0.6), 0 4px 10px rgba(0, 0, 0, 0.7);
+  margin-bottom: 12px;
+}
+
+.baner\.content p {
+  font-size: 1.3rem;
+  color: var(--text-light);
+  font-style: italic;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.8);
+}
+
+/* ==========================================================================
+   3. ВЕРХНЯЯ СЕКЦИЯ: ПАСПОРТ И ЦИТАТЫ (.info-grid)
+   ========================================================================== */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 35px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+/* Общие свойства контрастных стеклянных карточек */
+.card {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12); /* Более заметная рамка */
+  border-radius: 18px;
+  padding: 35px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(243, 198, 79, 0.5);
+  box-shadow: 0 25px 50px rgba(243, 198, 79, 0.12);
+}
+
+/* Левая сторона — Паспорт книги */
+.card.book-passport {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Обложка книги на скриншоте теперь получит красивую рамку и отделится от фона */
+.review-cover {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  margin-bottom: 25px;
+  border: 2px solid rgba(243, 198, 79, 0.4);
+  transition: var(--transition);
+}
+
+.card.book-passport:hover .review-cover {
+  transform: scale(1.03);
+  border-color: var(--accent-gold);
+  box-shadow: 0 15px 35px rgba(243, 198, 79, 0.3);
+}
+
+.specs-list {
+  list-style: none;
+  width: 100%;
+}
+
+.specs-list li {
+  font-size: 1.1rem;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.specs-list li:last-child {
+  border-bottom: none;
+}
+
+.specs-list li strong {
+  color: var(--accent-gold);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.stars {
+  color: #ffcc00;
+  text-shadow: 0 0 12px rgba(255, 204, 0, 0.6);
+  font-size: 1.1rem;
+}
+
+/* Правая сторона — Цитаты (исправлено исчезновение контента) */
+.card.quotes-card h3 {
+  font-family: var(--font-title);
+  color: var(--accent-gold);
+  font-size: 1.7rem;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  border-bottom: 2px solid rgba(243, 198, 79, 0.3);
+  padding-bottom: 12px;
+  text-transform: uppercase;
+}
+
+/* Стилизация и проявление тегов <q> */
+.card.quotes-card q {
+  display: block;
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--text-light); /* Теперь текст чисто белый и контрастный */
+  margin-bottom: 25px;
+  padding-left: 20px;
+  border-left: 4px solid var(--accent-crimson);
+  line-height: 1.6;
+  position: relative;
+}
+
+.card.quotes-card q::before,
+.card.quotes-card q::after {
+  content: none; /* Убираем стандартные мелкие браузерные кавычки */
+}
+
+.card.quotes-card q:hover {
+  border-left-color: var(--accent-gold);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.03);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 0 8px 8px 0;
+}
+
+/* ==========================================================================
+   4. БЛОК РЕЦЕНЗИИ (.card.review-text-block)
+   ========================================================================== */
+.card.review-text-block {
+  margin-bottom: 50px;
+  background: linear-gradient(145deg, rgba(30, 35, 45, 0.85), rgba(40, 30, 35, 0.85));
+}
+
+.card.review-text-block h2 {
+  font-family: var(--font-title);
+  color: var(--accent-gold);
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.card.review-text-block p {
+  color: var(--text-muted);
+  font-size: 1.15rem;
+  white-space: pre-line; 
+}
+
+/* ==========================================================================
+   5. ГАЛЕРЕЯ В СТИЛЕ PINTEREST (.gallery-block)
+   ========================================================================== */
+.gallery-block {
+  margin-bottom: 60px;
+}
+
+.gallery-block h2 {
+  font-family: var(--font-title);
+  color: var(--accent-gold);
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 35px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.pinterest-gallery {
+  column-count: 3;    
+  column-gap: 25px;   
+  width: 100%;
+}
+
+.gallery-item {
+  display: inline-block; 
+  width: 100%;
+  margin-bottom: 25px; 
+  break-inside: avoid;  
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: var(--transition);
+  background: var(--bg-card);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: var(--transition);
+  filter: brightness(0.9);
+}
+
+.gallery-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: var(--accent-gold);
+  box-shadow: 0 20px 40px rgba(243, 198, 79, 0.25);
+}
+
+.gallery-item:hover img {
+  filter: brightness(1.1);
+}
+
+/* ==========================================================================
+   6. СТИЛИЗАЦИЯ ССЫЛКИ ВОЗВРАТА (.light-back-link)
+   ========================================================================== */
+.light-back-link {
+  display: block;
+  width: max-content;
+  margin: 40px auto 60px auto; 
+  padding: 14px 35px;
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  color: var(--text-light);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(243, 198, 79, 0.4); 
+  border-radius: 30px; 
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  transition: var(--transition);
+}
+
+.light-back-link:hover {
+  color: #161920; 
+  background: var(--accent-gold); 
+  border-color: var(--accent-gold);
+  transform: translateY(-4px); 
+  box-shadow: 0 10px 30px rgba(243, 198, 79, 0.4); 
+}
+
+.light-back-link:active {
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   7. АДАПТИВНОСТЬ ПОД МОБИЛЬНЫЕ УСТРОЙСТВА
+   ========================================================================== */
+@media (max-width: 992px) {
+  .info-grid {
+    grid-template-columns: 1fr; 
+  }
+  .pinterest-gallery {
+    column-count: 2; 
+  }
+  .baner\.content h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .pinterest-gallery {
+    column-count: 1; 
+  }
+  .baner\.content h1 {
+    font-size: 2.2rem;
+  }
+  .head.baner {
+    height: 35vh;
+  }
+  .card {
+    padding: 25px;
+  }
+}

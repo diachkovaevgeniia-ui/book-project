@@ -1,0 +1,227 @@
+/* ==========================================================================
+   1. ОБЩИЙ СТИЛЬ И УЮТНЫЙ ТЕМНЫЙ ФОН
+   ========================================================================== */
+body {
+  background: radial-gradient(circle at center, #1a162b 0%, #0d0b15 100%);
+  color: #e2daf8;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  background: rgba(157, 78, 221, 0.1);
+  border-bottom: 1px solid rgba(157, 78, 221, 0.2);
+  width: 100%;
+  text-align: center;
+  padding: 12px 0;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffb703;
+}
+
+.welcome-container {
+  text-align: center;
+  max-width: 700px;
+  margin: 40px 20px 20px 20px;
+}
+
+h1 {
+  font-size: 2.8rem;
+  color: #ffffff;
+  margin: 0 0 15px 0;
+  text-shadow: 0 0 15px rgba(157, 78, 221, 0.5);
+}
+
+.quote {
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #ffb703;
+  margin-bottom: 20px;
+}
+
+.intro-text {
+  color: #9a8eb9;
+  line-height: 1.6;
+}
+
+/* Красивый список фишек сайта */
+.features-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 25px;
+}
+
+.features-list li {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 8px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(154, 142, 185, 0.1);
+  font-size: 0.95rem;
+}
+
+.features-list li span {
+  margin-right: 6px;
+}
+
+/* ==========================================================================
+   2. ТРЕХМЕРНАЯ КНИЖНАЯ ПОЛКА (3D Магия)
+   ========================================================================== */
+/* Контейнер для полки и деревянной основы */
+.shelf-wrapper {
+  width: 100%;
+  max-width: 950px;
+  margin: 80px auto 50px auto;
+  position: relative;
+}
+
+/* Пространство, где стоят книги */
+.shelf {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 45px; /* Расстояние между книгами */
+  padding: 0 30px;
+  position: relative;
+  z-index: 5;
+}
+
+/* 3D Сцена для каждой книги (задает глубину) */
+.scene {
+  width: 140px;
+  height: 210px;
+  perspective: 1000px; /* Важно для 3D эффекта */
+}
+
+/* Ссылка-обертка, чтобы вся книга была кликабельной */
+.book-link {
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Объект Книга */
+.book {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-25deg); /* Поворачиваем боком к читателю */
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Наведение на книгу: она выдвигается вперед и разворачивается обложкой */
+.scene:hover .book {
+  transform: rotateY(0deg) translateZ(25px) translateY(-10px);
+}
+
+/* Общие стили для сторон книги */
+.side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #222;
+  box-sizing: border-box;
+}
+
+/* Передняя обложка */
+.side.front {
+  transform: rotateY(0deg) translateZ(12px); /* Сдвиг вперед на половину толщины */
+  border-radius: 0 4px 4px 0;
+  overflow: hidden;
+  box-shadow: inset -4px 0 10px rgba(0,0,0,0.3);
+}
+
+.cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Реалистичный корешок книги (слева) */
+.side.spine {
+  width: 24px; /* Толщина книги */
+  left: -12px;
+  transform: rotateY(-90deg);
+  box-shadow: inset -10px 0 20px rgba(0,0,0,0.5);
+}
+
+/* Атмосферные цвета корешков под каждую историю */
+.spine-1 { background: linear-gradient(#1b110b, #4a2810); } /* Эмпирей (золото и пламя) */
+.spine-2 { background: linear-gradient(#111625, #1d2d44); } /* Стеклянный трон (лед и сталь) */
+.spine-3 { background: linear-gradient(#190f2c, #3c165a); } /* Нити судьбы (мистический фиолетовый) */
+.spine-4 { background: linear-gradient(#0c1a10, #1b3a24); } /* КШИР (ночной двор и розы) */
+
+/* Правый срез книги (эффект страниц) */
+.side.right {
+  width: 24px;
+  right: -12px;
+  background: linear-gradient(90deg, #e5e0d8 0%, #baae9b 100%); /* Цвет бумажных страниц */
+  transform: rotateY(90deg);
+  box-shadow: inset 5px 0 10px rgba(0,0,0,0.2);
+}
+
+/* Реалистичная тень ПОД каждой книгой на полке */
+.book::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 5%;
+  width: 90%;
+  height: 15px;
+  background: rgba(0, 0, 0, 0.6);
+  filter: blur(5px);
+  transform: rotateX(90deg);
+  transition: opacity 0.4s ease, filter 0.4s ease;
+}
+
+.scene:hover .book::after {
+  opacity: 0.4;
+  filter: blur(8px);
+}
+
+/* ==========================================================================
+   3. ДЕРЕВЯННАЯ ПОЛКА (Визуальный фундамент)
+   ========================================================================== */
+.shelf-wood {
+  width: 100%;
+  height: 16px;
+  background: linear-gradient(90deg, #18122b 0%, #2c1e47 50%, #18122b 100%);
+  border-radius: 4px;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.8), 
+              0 -2px 10px rgba(157, 78, 221, 0.3); /* Неоновый отсвет магии на дереве */
+  position: absolute;
+  bottom: -16px;
+  left: 0;
+}
+
+/* ==========================================================================
+   4. ФУТЕР И НИЖНИЙ БЛОК
+   ========================================================================== */
+.goread {
+  margin-top: 50px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 183, 3, 0.4);
+}
+
+footer {
+  margin-top: auto;
+  padding: 30px 0;
+  font-size: 0.85rem;
+  color: #645a80;
+  text-align: center;
+  width: 100%;
+  border-top: 1px solid rgba(154, 142, 185, 0.05);
+}
